@@ -46,7 +46,7 @@ export function History() {
               <td>20 minutos</td>
               <td>Há 20 minutos</td>
               <td>
-                <Status statusColor="yellow">Concluído</Status>
+                <Status statusColor="red">Concluído</Status>
               </td>
             </tr>
           </tbody>
