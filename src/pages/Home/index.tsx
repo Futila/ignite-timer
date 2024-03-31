@@ -31,7 +31,8 @@ interface Cycle {
   task: string;
   minutesAmount: number;
   startDate: Date;
-  interruptedDate?: Date
+  interruptedDate?: Date,
+  finishedDate?: Date
 }
 
 export function Home() {
@@ -81,16 +82,38 @@ export function Home() {
 
     if (activeCycle) {
       interval = setInterval(() => {
-        setAmountSecondsPassed(
-          differenceInSeconds(new Date(), activeCycle.startDate)
-        );
+
+        const secondsDifference = differenceInSeconds(new Date(), activeCycle.startDate)
+
+        if (secondsDifference >= totalSeconds) {
+          setCycles((state) => state.map((cycle) => {
+            if (cycle.id === activeCycleId) {
+              return { ...cycle, finishedDate: new Date() }
+            } else {
+              return cycle
+            }
+          }))
+
+          //CHECK THIS LINE, WHY STILL RENDERING THE COSOLE LOG AFTER FINISHED THE TIME
+          console.log({ totalseconds: totalSeconds, secondsPassed: amountSecondPassed })
+          setAmountSecondsPassed(totalSeconds)
+          clearInterval(interval);
+
+        } else {
+          setAmountSecondsPassed(
+            secondsDifference
+          );
+        }
+
+
+
       }, 1000);
     }
 
     return () => {
       clearInterval(interval);
     };
-  }, [activeCycle]);
+  }, [activeCycle, totalSeconds, activeCycleId]);
 
   useEffect(() => {
     if (activeCycle) {
@@ -165,7 +188,7 @@ export function Home() {
             <HandPalm size={24} />
             Interromper
           </StopCountdownButton>) : (
-            <StartCountdownButton>
+            <StartCountdownButton disabled={isSubmitDisabled}>
               <Play size={24} />
               Começar
             </StartCountdownButton>
