@@ -18,7 +18,7 @@ const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, "Informe a tarefa"),
   minutesAmount: zod
     .number()
-    .min(5, "O ciclo precisa ser de no mínimo 5 minutos.")
+    .min(1, "O ciclo precisa ser de no mínimo 5 minutos.")
     .max(60, "O ciclo precisa ser de no máximo 60 minutos."),
 });
 
@@ -36,7 +36,7 @@ interface Cycle {
 export function Home() {
   const [cycles, setCycles] = useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = useState<string | null >(null)
- 
+  const [amountSecondPassed, setAmountSecondsPassed] = useState(0);
  
   const { register, handleSubmit, watch, formState, reset } = useForm<newCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
@@ -67,7 +67,21 @@ export function Home() {
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
-  console.log(activeCycle)
+  const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0;
+  const currentSeconds = activeCycle ? totalSeconds - amountSecondPassed : 0;
+
+  const minutesAmount = Math.floor(currentSeconds / 60);
+  const secondsAmount = currentSeconds % 60;
+
+  const minutes = String(minutesAmount).padStart(2, "0");
+  const seconds = String(secondsAmount).padStart(2, "0")
+
+
+  console.log({
+    totalSeconds: totalSeconds,
+    minutes: minutes, 
+    seconds: seconds
+  })
 
 
 
@@ -97,8 +111,8 @@ export function Home() {
             type="number"
             id="minutesAmount"
             placeholder="00"
-            step={5}
-            min={5}
+            step={1}
+            min={1}
             max={60}
             {...register("minutesAmount", { valueAsNumber: true })}
           />
@@ -106,11 +120,11 @@ export function Home() {
           <span>minutos.</span>
         </FormContainer>
         <CountdownContainer>
-          <span>0</span>
-          <span>0</span>
+          <span>{minutes[0]}</span>
+          <span>{minutes[1]}</span>
           <Separator>:</Separator>
-          <span>0</span>
-          <span>0</span>
+          <span>{seconds[0]}</span>
+          <span>{seconds[1]}</span>
         </CountdownContainer>
 
         {/*disabled={isSubmitDisabled} */}
