@@ -1,30 +1,64 @@
-# React + TypeScript + Vite
+# Ignite Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+This is a Pomodoro Application. Basically the person will type in which task they will start working on, for how long, and the timer will start running from there.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Layout
 
-## Expanding the ESLint configuration
+To see the complete layout: [figma](<https://www.figma.com/file/YqJC33tVzBSwFXxBpez52g/ToDo-List-%E2%80%A2-Desafio-React-(Copy)?type=design&node-id=4130-459&mode=design&t=pdVUT0FejANNKUEQ-0>)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<!-- image -->
 
-- Configure the top-level `parserOptions` property like this:
+<div align="center" style="display:flex">
+    <img src="./github/home.png" width="50%" />
+    <img src="./github/history.png" width="50%" />
+</div>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Features
+
+ - [x] Add a new task
+ - [x] Set the pomodoro (interval) time
+ - [x] Start a pomodoro
+ - [x] Show time passing
+ - [x] Show the Sop button when pomodoro is running
+ - [x] When the timer ends, the fields will be able to start again
+ - [x] On the history page it shows all pomodoros (in progress, complete, interrupted)
+
+## What was used ?
+
+The project was created on react
+
+- [x] ReactJs
+- [x] React Hooks
+- [x] React Hook Forms
+- [x] Styled Components
+- [x] Typescipt
+- [x] Context API
+- [x] Reducers
+
+## For Run
+
+With YARN:
+
+```
+yarn
+yarn dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+With NPM
+
+```
+npm install
+npm run dev
+```
+
+
+## Meta
+
+Author - Rockeseat.
+
+programmer - [Fernando Futila] - fernando.futila@gmail.com
+
+---
+
+Done with 💜 by Fernando Futila 👋🏻
