@@ -20,7 +20,7 @@ To see the complete layout: [figma](<https://www.figma.com/file/YqJC33tVzBSwFXxB
  - [x] Set the pomodoro (interval) time
  - [x] Start a pomodoro
  - [x] Show time passing
- - [x] Show the Sop button when pomodoro is running
+ - [x] Show the Stop button when pomodoro is running
  - [x] When the timer ends, the fields will be able to start again
  - [x] On the history page it shows all pomodoros (in progress, complete, interrupted)
 
